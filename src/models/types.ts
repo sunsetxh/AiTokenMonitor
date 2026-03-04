@@ -3,7 +3,7 @@
  */
 
 // Platform Types
-export type PlatformType = 'ark' | 'zai' | 'minimax' | 'claude';
+export type PlatformType = 'zai' | 'minimax';
 export type LimitType = 'daily' | 'monthly' | 'cumulative';
 export type CredentialStatus = 'valid' | 'invalid' | 'unknown' | 'expired';
 export type UsageStatus = 'normal' | 'warning' | 'critical';

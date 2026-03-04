@@ -3,18 +3,14 @@
  * Validates API credentials for all platforms
  */
 
-import { claudeAdapter } from '../platform/claude';
 import { zaiAdapter } from '../platform/zai';
-import { arkAdapter } from '../platform/ark';
 import { minimaxAdapter } from '../platform/minimax';
 import { getDecryptedCredential, updateCredentialStatus } from '../storage/storage-service';
 import { PlatformAdapter, PlatformType } from '@/models/types';
 
 // Map of platform adapters
 const adapters: Record<PlatformType, PlatformAdapter> = {
-  claude: claudeAdapter,
   zai: zaiAdapter,
-  ark: arkAdapter,
   minimax: minimaxAdapter,
 };
 
