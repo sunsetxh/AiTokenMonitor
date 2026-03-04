@@ -4,8 +4,6 @@
  */
 
 import { PlatformType, PlatformAdapter } from '../../models/types';
-import { claudeAdapter } from './claude';
-import { arkAdapter } from './ark';
 import { zaiAdapter } from './zai';
 import { minimaxAdapter } from './minimax';
 
@@ -13,8 +11,6 @@ import { minimaxAdapter } from './minimax';
  * Registry of all platform adapters
  */
 const adapters: Map<PlatformType, PlatformAdapter> = new Map([
-  ['claude', claudeAdapter],
-  ['ark', arkAdapter],
   ['zai', zaiAdapter],
   ['minimax', minimaxAdapter],
 ]);
@@ -64,4 +60,4 @@ export function getPlatformLogoUrl(platformType: PlatformType): string {
 }
 
 // Export individual adapters for convenience
-export { claudeAdapter, arkAdapter, zaiAdapter, minimaxAdapter };
+export { zaiAdapter, minimaxAdapter };
