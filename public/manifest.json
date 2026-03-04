@@ -1,0 +1,20 @@
+{
+  "name": "AI Token Monitor",
+  "short_name": "TokenMonitor",
+  "description": "Multi-platform AI Token Usage Monitor - Track your API token usage across Ark, Zai, MiniMax, and Claude platforms",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4F46E5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "productivity"],
+  "lang": "zh-CN"
+}
