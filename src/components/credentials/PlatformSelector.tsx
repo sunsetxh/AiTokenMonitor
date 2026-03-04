@@ -12,10 +12,8 @@ interface PlatformSelectorProps {
 }
 
 const platforms: { type: PlatformType; name: string; logo: string }[] = [
-  { type: 'ark', name: 'Ark', logo: '/logos/ark.svg' },
   { type: 'zai', name: 'Zai', logo: '/logos/zai.svg' },
-  { type: 'minimax', name: 'MiniMax', logo: '/logos/minimax.svg' },
-  { type: 'claude', name: 'Claude', logo: '/logos/claude.svg' }
+  { type: 'minimax', name: 'MiniMax', logo: '/logos/minimax.svg' }
 ];
 
 export function PlatformSelector({ value, onChange, disabled }: PlatformSelectorProps) {

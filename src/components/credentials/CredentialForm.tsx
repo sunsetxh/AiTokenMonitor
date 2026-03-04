@@ -22,8 +22,6 @@ export interface CredentialFormData {
 }
 
 const PLATFORMS: Array<{ value: PlatformType; label: string }> = [
-  { value: 'claude', label: 'Claude (Anthropic)' },
-  { value: 'ark', label: 'Ark' },
   { value: 'zai', label: 'Zai' },
   { value: 'minimax', label: 'MiniMax' },
 ];
@@ -35,7 +33,7 @@ const LIMIT_TYPES = [
 ];
 
 export function CredentialForm({ onSubmit, onCancel, initialData, isLoading }: CredentialFormProps) {
-  const [platformName, setPlatformName] = useState<PlatformType>(initialData?.platformName || 'claude');
+  const [platformName, setPlatformName] = useState<PlatformType>(initialData?.platformName || 'zai');
   const [accountLabel, setAccountLabel] = useState(initialData?.accountLabel || '');
   const [limitType, setLimitType] = useState<'daily' | 'monthly' | 'cumulative'>(initialData?.limitType || 'monthly');
   const [credentials, setCredentials] = useState(initialData?.credentials || '');
@@ -118,7 +116,7 @@ export function CredentialForm({ onSubmit, onCancel, initialData, isLoading }: C
             type={showCredentials ? 'text' : 'password'}
             value={credentials}
             onChange={(e) => setCredentials(e.target.value)}
-            placeholder={platformName === 'claude' ? 'sk-ant-api03-...' : '输入 API Key'}
+            placeholder="输入 API Key"
             className="w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             required
           />

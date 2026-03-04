@@ -47,7 +47,7 @@ export function validateAccountLabel(
  * @returns true if valid platform type
  */
 export function validatePlatformType(platform: string): boolean {
-  const validPlatforms = ['ark', 'zai', 'minimax', 'claude'];
+  const validPlatforms = ['zai', 'minimax'];
   return validPlatforms.includes(platform);
 }
 

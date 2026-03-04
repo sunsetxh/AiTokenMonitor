@@ -11,8 +11,6 @@ interface PlatformFilterProps {
 }
 
 const PLATFORMS: Array<{ value: PlatformType; label: string }> = [
-  { value: 'claude', label: 'Claude' },
-  { value: 'ark', label: 'Ark' },
   { value: 'zai', label: 'Zai' },
   { value: 'minimax', label: 'MiniMax' },
 ];

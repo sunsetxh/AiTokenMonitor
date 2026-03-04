@@ -24,9 +24,9 @@ export function CredentialInputDialog({
   editingAccount,
   isValidating
 }: CredentialInputDialogProps) {
-  const [platform, setPlatform] = useState<PlatformType>('claude');
+  const [platform, setPlatform] = useState<PlatformType>('zai');
   const [formData, setFormData] = useState<CredentialFormData>({
-    platformName: 'claude',
+    platformName: 'zai',
     accountLabel: '',
     limitType: 'monthly',
     credentials: ''
@@ -43,12 +43,12 @@ export function CredentialInputDialog({
       setPlatform(editingAccount.platformName);
     } else {
       setFormData({
-        platformName: 'claude',
+        platformName: 'zai',
         accountLabel: '',
         limitType: 'monthly',
         credentials: ''
       });
-      setPlatform('claude');
+      setPlatform('zai');
     }
   }, [editingAccount, isOpen]);
 

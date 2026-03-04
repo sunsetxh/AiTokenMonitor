@@ -56,10 +56,8 @@ interface UsageCardProps {
 
 // Platform-specific refresh info
 const platformRefreshInfo: Record<PlatformType, { refreshHours: number; quotaType: string; hasWeekly: boolean }> = {
-  ark: { refreshHours: 5, quotaType: '5小时', hasWeekly: false },
   zai: { refreshHours: 5, quotaType: '5小时', hasWeekly: false },
   minimax: { refreshHours: 4, quotaType: '4小时', hasWeekly: false },
-  claude: { refreshHours: 5, quotaType: '周度', hasWeekly: true },
 };
 
 export function UsageCard({ usage }: UsageCardProps) {
@@ -77,10 +75,8 @@ export function UsageCard({ usage }: UsageCardProps) {
   } = usage;
 
   const platformDisplayNames: Record<string, string> = {
-    ark: 'Ark',
     zai: 'Zai',
     minimax: 'MiniMax',
-    claude: 'Claude',
   };
 
   const refreshInfo = platformRefreshInfo[platformName as PlatformType] || { refreshHours: 5, quotaType: '月度', hasWeekly: false };

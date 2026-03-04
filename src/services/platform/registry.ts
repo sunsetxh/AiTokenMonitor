@@ -10,7 +10,7 @@ import { minimaxAdapter } from './minimax';
 /**
  * Registry of all platform adapters
  */
-const adapters: Map<PlatformType, PlatformAdapter> = new Map([
+const adapters = new Map<PlatformType, PlatformAdapter>([
   ['zai', zaiAdapter],
   ['minimax', minimaxAdapter],
 ]);
