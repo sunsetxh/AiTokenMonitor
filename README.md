@@ -11,8 +11,6 @@
 
 ## 支持平台
 
-- Claude (Anthropic)
-- Ark (火山引擎)
 - Zai
 - MiniMax
 
