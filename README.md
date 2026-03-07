@@ -30,18 +30,45 @@ npm run dev
 
 访问 http://localhost:5173
 
-### 构建生产版本
+### 运行生产版本
 
 ```bash
+# 构建前端
 npm run build
+
+# 启动服务（从项目根目录）
+NODE_ENV=production PORT=3001 node server/dist/index.js
 ```
+
+服务将在 http://localhost:3001 运行
+
+### 部署到服务器
+
+#### 方式一：使用部署脚本（一键）
+
+```bash
+# 运行部署脚本
+./scripts/deploy.sh
+
+# 部署包会生成 ai-token-monitor-deploy.tar.gz
+```
+
+#### 方式二：手动部署
+
+1. 复制项目到服务器
+2. 安装依赖：`npm install && cd server && npm install`
+3. 构建：`npm run build`
+4. 启动服务：
+   ```bash
+   NODE_ENV=production PORT=3001 nohup node server/dist/index.js > app.log 2>&1 &
+   ```
 
 ## 技术栈
 
 - React 18 + TypeScript
 - Vite
 - Tailwind CSS
-- Dexie.js (IndexedDB)
+- SQLite (better-sqlite3)
 - Recharts
 
 ## 项目结构
@@ -53,6 +80,13 @@ src/
 ├── models/        # 类型定义
 ├── utils/        # 工具函数
 └── contexts/     # React Context
+
+server/
+├── src/          # Express 后端源码
+└── dist/         # 编译后的后端代码
+
+scripts/
+└── deploy.sh     # 一键部署脚本
 ```
 
 ## License

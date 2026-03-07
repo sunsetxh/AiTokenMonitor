@@ -7,6 +7,7 @@ const DashboardPage = lazy(() => import('./components/dashboard/DashboardPage').
 const CredentialsPage = lazy(() => import('./components/credentials/CredentialsPage').then(m => ({ default: m.CredentialsPage })))
 const TrendsPage = lazy(() => import('./components/trends/TrendsPage').then(m => ({ default: m.TrendsPage })))
 const AboutPage = lazy(() => import('./components/about/AboutPage').then(m => ({ default: m.AboutPage })))
+const TeamMonitorPage = lazy(() => import('./components/team/TeamMonitorPage').then(m => ({ default: m.TeamMonitorPage })))
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -44,6 +45,9 @@ function App() {
               <a href="/trends" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                 Trends
               </a>
+              <a href="/team" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                Teams
+              </a>
               <a href="/about" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                 About
               </a>
@@ -65,6 +69,7 @@ function App() {
               <Route path="/" element={<DashboardPage />} />
               <Route path="/credentials" element={<CredentialsPage />} />
               <Route path="/trends" element={<TrendsPage />} />
+              <Route path="/team" element={<TeamMonitorPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

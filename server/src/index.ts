@@ -11,6 +11,8 @@ import Database from 'better-sqlite3';
 import { randomUUID } from 'crypto';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
+import os from 'os';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -330,6 +332,72 @@ app.all('/api/minimax/*', async (req, res) => {
 });
 
 // Health check
+// ============ Teams API ============
+const TEAMS_PATH = path.join(os.homedir(), '.claude', 'teams');
+
+app.get('/api/teams', async (req, res) => {
+  try {
+    // Check if teams directory exists
+    if (!fs.existsSync(TEAMS_PATH)) {
+      return res.json({ teams: [] });
+    }
+
+    const teamDirs = fs.readdirSync(TEAMS_PATH, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name);
+
+    const teams = [];
+
+    for (const teamName of teamDirs) {
+      const teamPath = path.join(TEAMS_PATH, teamName);
+      const configPath = path.join(teamPath, 'config.json');
+      const inboxesPath = path.join(teamPath, 'inboxes');
+
+      // Read config
+      let config = null;
+      if (fs.existsSync(configPath)) {
+        try {
+          const configContent = fs.readFileSync(configPath, 'utf-8');
+          config = JSON.parse(configContent);
+        } catch (e) {
+          console.error('Failed to read config for ' + teamName + ':', e);
+        }
+      }
+
+      // Read inboxes
+      const inboxes: Record<string, any[]> = {};
+      if (fs.existsSync(inboxesPath)) {
+        const inboxFiles = fs.readdirSync(inboxesPath)
+          .filter(f => f.endsWith('.json'));
+
+        for (const inboxFile of inboxFiles) {
+          const inboxPath = path.join(inboxesPath, inboxFile);
+          try {
+            const content = fs.readFileSync(inboxPath, 'utf-8');
+            const messages = JSON.parse(content);
+            const inboxName = inboxFile.replace('.json', '');
+            inboxes[inboxName] = messages;
+          } catch (e) {
+            console.error('Failed to read inbox ' + inboxFile + ':', e);
+          }
+        }
+      }
+
+      teams.push({
+        name: teamName,
+        config,
+        inboxes
+      });
+    }
+
+    res.json({ teams });
+  } catch (error) {
+    console.error('Teams API error:', error);
+    res.status(500).json({ error: 'Failed to load teams' });
+  }
+});
+
+
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
@@ -357,3 +425,4 @@ server.listen(PORT, '0.0.0.0', () => {
   console.log(`   Zai API proxy: http://0.0.0.0:${PORT}/api/zai/`);
   console.log(`   MiniMax API proxy: http://0.0.0.0:${PORT}/api/minimax/`);
 });
+
